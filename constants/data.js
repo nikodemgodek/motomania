@@ -1,4 +1,12 @@
 
+export const typeList = [
+    { id: 213, title: 'Wszystkie', checked: false },
+    { id: 1, title: 'Coupe', checked: false },
+    { id: 2, title: 'Limuzyna', checked: false },
+    { id: 3, title: 'Kombi', checked: false },
+    { id: 4, title: 'SUV', checked: false },
+]
+
 export const brandList = [
     { id: 2137, title: "Wszystkie", checked: false },
     { id: 0, title: "Abarth", checked: false },

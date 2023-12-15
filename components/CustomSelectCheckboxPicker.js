@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet, SafeAreaView, Dimensions, TouchableOpacity, FlatList } from 'react-native';
 import { CheckBox } from 'react-native-elements';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CustomButton from './CustomButton';
-
+import { Icon } from 'react-native-elements';
 const { width } = Dimensions.get('screen');
 
-const CustomSelectCheckboxPicker = ({ updateCheckboxList, checkboxList, setModalVisible, setClicked, setSelected }) => {
+const CustomSelectCheckboxPicker = ({ updateCheckboxList, checkboxList, setModalVisible, setClicked, setSelected, onChange }) => {
 
     const handleToggleCheckbox = (id) => {
         
@@ -17,6 +17,10 @@ const CustomSelectCheckboxPicker = ({ updateCheckboxList, checkboxList, setModal
             return item;
         });
         updateCheckboxList(updateList);
+    }
+
+    const handleGoBackClosingModal = () => {
+        setModalVisible(false)
     }
 
     const handleCloseModal = () => {
@@ -39,9 +43,21 @@ const CustomSelectCheckboxPicker = ({ updateCheckboxList, checkboxList, setModal
         setSelected(getSelectedItems);
     }
 
+    const handleChange = () => {
+        console.log('checkbox list has been updated!');
+        onChange(getSelectedItems());
+    }
+
+    useEffect( () => {
+        handleChange();
+    }, [checkboxList])
+
     return(
-        <SafeAreaView style={{ flex: 1, marginTop: 100 }}>
+        <SafeAreaView style={{ flex: 1, }}>
             <View style={{ flex: 1, flexDirection: 'column', width}}>
+                <TouchableOpacity style={{ alignItems: 'flex-start', justifyContent: 'center', margin: 10 }} onPress={handleGoBackClosingModal}>
+                    <Icon name='chevron-left' size={40} color="#000" />
+                </TouchableOpacity>
                 <FlatList
                     data={checkboxList}
                     keyExtractor={ item => item.id }

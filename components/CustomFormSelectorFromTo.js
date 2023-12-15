@@ -1,18 +1,29 @@
 import { StyleSheet, View, Text, TextInput } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { useEffect, useState, useReducer } from 'react';
 
-const CustomFormSelectorFromTo = (props) => {
+
+const CustomFormSelectorFromTo = ({ title, minValue, maxValue, dispatch }) => {
+
+    const handleMinValueChange = (e) => {
+        dispatch({ type: 'UPDATE_MIN_VALUE', payload: e.target.value });
+    };
+
+    const handleMaxValueChange = (e) => {
+        dispatch({ type: 'UPDATE_MAX_VALUE', payload: e.target.value });
+    };
+
     return(
         <View style={styles.container}>
-            <Text style={styles.text}>{props.title}</Text>
+            <Text style={styles.text}>{title}</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%', marginTop: 5}}>
                 <View style={styles.inputContainer}>
-                    <TextInput style={[
+                    <TextInput value={minValue} onChangeText={handleMinValueChange} style={[
                         Platform.OS === 'ios' ? styles.inputIOS : styles.inputAndroid
                     ]} placeholder="od" keyboardType='numeric' />
                 </View>
                 <View style={styles.inputContainer}>
-                    <TextInput style={[
+                    <TextInput value={maxValue} onChangeText={handleMaxValueChange} style={[
                         Platform.OS === 'ios' ? styles.inputIOS : styles.inputAndroid
                     ]} placeholder="do" keyboardType='numeric' />
                 </View>

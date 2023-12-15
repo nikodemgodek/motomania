@@ -13,7 +13,7 @@ const CustomFormSelector = (props) => {
             <View style={styles.container}>
                 <View style={styles.containerItem}>
                     <Text style={styles.text}>{props.title}</Text>
-                    <Text style={{marginTop: 5}}>{props.selectedItem.join(', ')}</Text>
+                    <Text style={{marginTop: 5}}>{props.chosen}</Text>
                 </View>
                 <View style={styles.containerItem}>
                     <Icon name="chevron-right" size={30} />
