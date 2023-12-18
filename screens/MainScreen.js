@@ -35,6 +35,18 @@ const MainScreen = () => {
             case 'UPDATE_FUEL':
                 return { ...state, fuel_type: action.payload };
             
+            case 'UPDATE_MIN_PRICE':
+                return { ...state, minPrice: action.payload };
+                
+            case 'UPDATE_MAX_PRICE':
+                return { ...state, maxPrice: action.payload };
+
+            case 'UPDATE_MIN_PROD_YEAR':
+                return { ...state, minYear: action.payload };
+                
+            case 'UPDATE_MAX_PROD_YEAR':
+                return { ...state, maxYear: action.payload };
+
             default:
                 return state;
         }
@@ -52,6 +64,22 @@ const MainScreen = () => {
 
     const handleCarFuelTypeChange = newValue => {
         dispatch({ type: 'UPDATE_FUEL', payload: newValue });
+    }
+
+    const handleUpdateMinPrice = newValue => {
+        dispatch({ type: 'UPDATE_MIN_PRICE', payload: newValue });
+    }
+
+    const handleUpdateMaxPrice = newValue => {
+        dispatch({ type: 'UPDATE_MAX_PRICE', payload: newValue });
+    }
+
+    const handleUpdateMinProductionYear = v => {
+        dispatch({ type: 'UPDATE_MIN_PROD_YEAR', payload: v });
+    }
+
+    const handleUpdateMaxProductionYear = v => {
+        dispatch({ type: 'UPDATE_MAX_PROD_YEAR', payload: v });
     }
 
     const [modalVisible, setModalVisible] = useState(false);
@@ -81,8 +109,8 @@ const MainScreen = () => {
     }
 
     useEffect( () => {
-        console.log(state.type);
-        console.log(state.brand);
+        console.log('state minV:', state.minYear);
+        console.log('state maxV:', state.maxYear);
     }, [state]);
 
     return(
@@ -107,8 +135,8 @@ const MainScreen = () => {
                 <CustomFormSelector title="Typ nadwozia" chosen={state.type !== null ? state.type.join(', '): null } selectedItem={selectedCarType} clicked={carTypeClicked} setClicked={setCarTypeClicked} setModalVisible={setModalVisible}/>
                 <CustomFormSelector title="Marka pojazdu" chosen={state.brand !== null ? state.brand.join(', ') : null } selectedItem={selectedBrand} clicked={carBrandClicked} setClicked={setCarBrandClicked} setModalVisible={setModalVisible}/>
                 { selectedBrand.length === 1 ? <CustomFormSelector title="Model" selectedItem={selectedModel}/> : null }
-                <CustomFormSelectorFromTo title="Cena pojazdu" minValue={state.minValue} maxValue={state.maxValue} dispatch={dispatch}/>
-                <CustomFormSelectorFromTo title="Rok produkcji" />
+                <CustomFormSelectorFromTo title="Cena pojazdu" minValue={state.minPrice} onUpdateMinValue={handleUpdateMinPrice} maxValue={state.maxPrice} onUpdateMaxValue={handleUpdateMaxPrice}/>
+                <CustomFormSelectorFromTo title="Rok produkcji" minValue={state.minYear} onUpdateMinValue={handleUpdateMinProductionYear} maxValue={state.maxYear} onUpdateMaxValue={handleUpdateMaxProductionYear}/>
                 <CustomFormSelector title="Rodzaj paliwa" chosen={state.fuel_type !== null ? state.fuel_type.join(', ') : null } selectedItem={selectedFuelType} clicked={carFuelTypeListClicked} setClicked={setCarFuelTypeListClicked} setModalVisible={setModalVisible}/>
                 <CustomFormSelectorFromTo title="Przebieg (km)" />
                 

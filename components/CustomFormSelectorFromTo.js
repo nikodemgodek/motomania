@@ -3,27 +3,27 @@ import { Icon } from 'react-native-elements';
 import { useEffect, useState, useReducer } from 'react';
 
 
-const CustomFormSelectorFromTo = ({ title, minValue, maxValue, dispatch }) => {
+const CustomFormSelectorFromTo = ({ title, minValue, maxValue, onUpdateMinValue, onUpdateMaxValue }) => {
 
-    const handleMinValueChange = (e) => {
-        dispatch({ type: 'UPDATE_MIN_VALUE', payload: e.target.value });
-    };
+    const handleUpdateMinValue = (v) => {
+        onUpdateMinValue(v);
+    }
 
-    const handleMaxValueChange = (e) => {
-        dispatch({ type: 'UPDATE_MAX_VALUE', payload: e.target.value });
-    };
+    const handleUpdateMaxValue = (v) => {
+        onUpdateMaxValue(v);
+    }
 
     return(
         <View style={styles.container}>
             <Text style={styles.text}>{title}</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%', marginTop: 5}}>
                 <View style={styles.inputContainer}>
-                    <TextInput value={minValue} onChangeText={handleMinValueChange} style={[
+                    <TextInput value={minValue} onChangeText={(text) => handleUpdateMinValue(text)} style={[
                         Platform.OS === 'ios' ? styles.inputIOS : styles.inputAndroid
                     ]} placeholder="od" keyboardType='numeric' />
                 </View>
                 <View style={styles.inputContainer}>
-                    <TextInput value={maxValue} onChangeText={handleMaxValueChange} style={[
+                    <TextInput value={maxValue} onChangeText={(text) => handleUpdateMaxValue(text)} style={[
                         Platform.OS === 'ios' ? styles.inputIOS : styles.inputAndroid
                     ]} placeholder="do" keyboardType='numeric' />
                 </View>
