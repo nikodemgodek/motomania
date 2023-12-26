@@ -1,10 +1,14 @@
 
 export const typeList = [
-    { id: 213, title: 'Wszystkie', checked: false },
+    { id: 2137, title: 'Wszystkie', checked: false },
     { id: 1, title: 'Coupe', checked: false },
     { id: 2, title: 'Limuzyna', checked: false },
     { id: 3, title: 'Kombi', checked: false },
     { id: 4, title: 'SUV', checked: false },
+    { id: 5, title: 'Hatchback', checked: false },
+    { id: 6, title: 'Minivan', checked: false },
+    { id: 7, title: 'Kabriolet', checked: false },
+    { id: 8, title: 'Kompakt', checked: false },
 ]
 
 export const brandList = [
@@ -43,9 +47,51 @@ export const brandList = [
 ];
 
 export const fuelTypeList = [
-    { id: 213, title: 'Wszystkie', checked: false },
+    { id: 2137, title: 'Wszystkie', checked: false },
     { id: 1, title: 'Petrol', checked: false },
     { id: 2, title: 'Diesel', checked: false },
     { id: 3, title: 'CNG', checked: false },
     { id: 4, title: 'Hybrid', checked: false },
+]
+
+
+export const vehicle_data = [
+    {
+        "brands": [
+          {
+            "name": "Toyota",
+            "models": [
+              {
+                "name": "Corolla",
+                "year": 2022,
+                "engine": "1.8L",
+                "transmission": "Automatic"
+              },
+              {
+                "name": "Camry",
+                "year": 2023,
+                "engine": "2.5L",
+                "transmission": "CVT"
+              }
+            ]
+          },
+          {
+            "name": "Honda",
+            "models": [
+              {
+                "name": "Civic",
+                "year": 2022,
+                "engine": "1.5L",
+                "transmission": "Manual"
+              },
+              {
+                "name": "Accord",
+                "year": 2023,
+                "engine": "2.0L",
+                "transmission": "Automatic"
+              }
+            ]
+          }
+        ]
+      }
 ]

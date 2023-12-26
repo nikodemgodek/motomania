@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
+import { useState } from 'react';
 const { width } = Dimensions.get('screen');
 
 
@@ -25,6 +26,9 @@ const settingsSections = [
 ]
 
 const UserSettings = () => {
+
+    const [user, setUser] = useState(false);
+
     return(
         <SafeAreaView style={{ flex: 1, backgroundColor: '#f1f1f1'}}>
             <View style={[{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}, 

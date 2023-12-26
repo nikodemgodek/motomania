@@ -1,20 +1,7 @@
-import { StyleSheet, View } from 'react-native';
-import MainScreen from './screens/MainScreen';
-
+import MainContainer from './navigation/MainContainer';
 export default function App() {
 
   return (
-    <View style={styles.container}>
-        <MainScreen />
-    </View>
+    <MainContainer />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

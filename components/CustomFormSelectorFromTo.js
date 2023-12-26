@@ -13,17 +13,28 @@ const CustomFormSelectorFromTo = ({ title, minValue, maxValue, onUpdateMinValue,
         onUpdateMaxValue(v);
     }
 
+    const compareAndSwap = () => {
+        
+        if(parseInt(minValue) > parseInt(maxValue)) {
+            const tmp = minValue;
+            onUpdateMaxValue(tmp);
+            onUpdateMinValue(maxValue);
+
+        }
+
+    }
+
     return(
         <View style={styles.container}>
             <Text style={styles.text}>{title}</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%', marginTop: 5}}>
                 <View style={styles.inputContainer}>
-                    <TextInput value={minValue} onChangeText={(text) => handleUpdateMinValue(text)} style={[
+                    <TextInput value={minValue} onChangeText={(text) => handleUpdateMinValue(text)} onBlur={compareAndSwap} style={[
                         Platform.OS === 'ios' ? styles.inputIOS : styles.inputAndroid
                     ]} placeholder="od" keyboardType='numeric' />
                 </View>
                 <View style={styles.inputContainer}>
-                    <TextInput value={maxValue} onChangeText={(text) => handleUpdateMaxValue(text)} style={[
+                    <TextInput value={maxValue} onChangeText={(text) => handleUpdateMaxValue(text)} onBlur={compareAndSwap} style={[
                         Platform.OS === 'ios' ? styles.inputIOS : styles.inputAndroid
                     ]} placeholder="do" keyboardType='numeric' />
                 </View>
